@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { CompanySearch } from "../../company";
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
+
 interface Props {
   id: string;
   searchResult: CompanySearch;
+  onPortfolioCreate: (e: SyntheticEvent) => void;
 }
 
-const Card: React.FC<Props> = ({ id, searchResult }) => {
+const Card: React.FC<Props> = ({ id, searchResult, onPortfolioCreate }) => {
   return (
-    <div className='card'>
-      <img alt="Company logo" />
-      <div className="details">
-        <h2>{searchResult["2. name"]} ({searchResult["1. symbol"]})</h2>
-        <p>{searchResult["8. currency"]}</p>
-      </div>
-      <p className='info'>{searchResult["4. region"]} - {searchResult["3. type"]}</p>
+    <div
+      className="flex flex-col items-center justify-between w-full p-8 bg-slate-100 rounded-lg md:flex-row"
+      key={id}
+      id={id}
+    >
+      <h2 className="font-bold text-center text-veryblack md:text-left">
+        {searchResult["2. name"]} ({searchResult["1. symbol"]})
+      </h2>
+      <p className="text-veryblack">{searchResult["8. currency"]}</p>
+      <p className="text-veryblack font-bold">
+        {searchResult["4. region"]} - {searchResult["3. type"]}
+      </p>
+      <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult["1. symbol"]} />
     </div>
   );
 };
