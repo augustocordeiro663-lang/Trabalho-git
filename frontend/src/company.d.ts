@@ -1,4 +1,5 @@
 export interface CompanySearch {
+  symbolName: any;
   "1. symbol": string;
   "2. name": string;
   "3. type": string;

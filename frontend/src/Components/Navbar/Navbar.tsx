@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from "./finshark.png"
+import { Link } from 'react-router'
 
 type Props = {}
 
@@ -9,10 +10,12 @@ const Navbar = (props: Props) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-20">
           <div className="hidden lg:flex">
-            <img src={logo} alt="" />
-            <a href="#" className="text-black hover:text-darkBlue">
-              Dashboard
-            </a>
+            <Link to="/">
+              <img src={logo} alt="" />
+            </Link>
+            <Link to="/search" className="text-black hover:text-darkBlue">
+              Search
+            </Link>
           </div>
         </div>
         <div className="hidden lg:flex items-center space-x-6 text-back">

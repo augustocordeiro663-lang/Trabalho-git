@@ -1,20 +1,23 @@
-import React, { SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 import DeletePortfolio from '../DeletePortfolio/DeletePortfolio';
+import { Link } from 'react-router';
+
 interface Props {
   portfolioValue: string;
   onPortfolioDelete: (e: SyntheticEvent) => void; 
 }
 
-
 const CardPortfolio = ({ portfolioValue, onPortfolioDelete }: Props) => {
   return (
-   <div className="flex flex-col w-full p-8 space-y-4 text-center rounded-lg shadow-lg md:w-3/7">
-  <p className="pt-4 text-xl font-bold">{portfolioValue}</p>
-  <DeletePortfolio
-    portfolioValue={portfolioValue}
-    onPortfolioDelete={onPortfolioDelete}
-  />
-</div>
+    <div className="flex flex-col w-full p-8 space-y-4 text-center rounded-lg shadow-lg md:w-3/7">
+      <Link to={`/company/${portfolioValue}`} className="pt-4 text-xl font-bold">
+        {portfolioValue}
+      </Link>
+      <DeletePortfolio
+        portfolioValue={portfolioValue}
+        onPortfolioDelete={onPortfolioDelete}
+      />
+    </div>
   );
 };
 
