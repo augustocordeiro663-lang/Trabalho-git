@@ -34,15 +34,15 @@ const SearchPage = (props: Props) => {
         setPortfolioValues(removed);
       };
     
-      const onSearchSubmit = async (e: SyntheticEvent) => {
-        e.preventDefault();
-        const result = await searchCompanies(search);
-        if (typeof result === "string") {
-          setServerError(result);
-        } else if (Array.isArray(result.data.bestMatches)) {
-          setSearchResult(result.data.bestMatches);
-        }
-      };
+ const onSearchSubmit = async (e: SyntheticEvent) => {
+  e.preventDefault();
+  const result = await searchCompanies(search);
+  if (typeof result === "string") {
+    setServerError(result);
+  } else if (Array.isArray(result.data)) {
+    setSearchResult(result.data);
+  }
+};
       
   return   <div className="App">
       <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
