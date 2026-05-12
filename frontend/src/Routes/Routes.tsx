@@ -1,19 +1,24 @@
 import { createBrowserRouter } from "react-router";
 import HomePage from "../Pages/HomePage/HomePage";
-import Search from "../Components/Search/Search";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import App from "../App";
 
-export const router = createBrowserRouter ([
-    {
-        path: "/",
-        element: <App />,
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "", element: <HomePage /> },
+      { path: "search", element: <SearchPage /> },
+      {
+        path: "company/:ticker",
+        element: <CompanyPage />,
         children: [
-            {path: "", element: <HomePage/>},
-            {path: "search", element: <SearchPage/>},
-            {path: "company/:ticker", element: <CompanyPage/>},
-             
-        ]
-    }
-])
+          { path: "company-profile", element: <HomePage /> },
+          { path: "income-statement", element: <HomePage /> },
+        ],
+      },
+    ],
+  },
+]);

@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { CompanyProfile } from '../../company';
 import { getCompanyProfile } from '../../api';
 import Sidebar from '../../Components/Sidebar/Sidebar';
+import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard';
+import Tile from '../../Components/Tile/Tile';
 
 interface Props {}
 
 const CompanyPage = (props: Props) => {
   let { ticker } = useParams();
-  const [company, setCompany] = useState<CompanyProfile | undefined>(undefined);
+  const [company, setCompany] = useState<CompanyProfile>();
 
-useEffect(() => {
-  const getProfileInit = async () => {
-    const result = await getCompanyProfile(ticker!);
-    if (typeof result !== "string") {
-      setCompany(result?.data[0]); // <-- adiciona o [0] aqui
-    }
-  };
-  getProfileInit();
-}, []);
+  useEffect(() => {
+    const getProfileInit = async () => {
+      const result = await getCompanyProfile(ticker!);
+      if (typeof result !== "string" && result) {
+        setCompany(result.data);
+      }
+    };
+    getProfileInit();
+  }, [ticker]);
+
   return (
     <>
       {company ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
-        <Sidebar />
-        
+          <Sidebar companyName={company.name} />
+          <CompanyDashboard>
+            <Tile title="Company" subTitle={company.name} />
+            <Tile title="Ticker" subTitle={company.ticker} />
+            <Tile title="Country" subTitle={company.country} />
+            <Tile title="Exchange" subTitle={company.exchange} />
+          </CompanyDashboard>
         </div>
       ) : (
         <div>Company not found!</div>

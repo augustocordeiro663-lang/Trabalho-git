@@ -2,41 +2,39 @@ import axios from "axios";
 import { CompanyProfile, CompanySearch } from "./company";
 
 interface SearchResponse {
-  bestMatches: CompanySearch[];
+  result: CompanySearch[];
 }
-  const API_KEY = "ZDZmsL0uMjGdO9pNGonFKH1Ru2Z1Q2Kt";
 
-  export const searchCompanies = async (query: string) => {
+export const searchCompanies = async (query: string) => {
   try {
-    const data = await axios.get<CompanySearch[]>(
-      `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&apikey=${process.env.REACT_APP_API_KEY}`
-    
+    const data = await axios.get<SearchResponse>(
+      `https://finnhub.io/api/v1/search?q=${query}&token=${process.env.REACT_APP_API_KEY}`
     );
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log("error message: ", error.message);
+      console.log("error message:", error.message);
       return error.message;
     } else {
-      console.log("unexpected error: ", error);
-      return "An expected error has occured.";
+      console.log("unexpected error:", error);
+      return "An unexpected error has occurred.";
     }
   }
 };
 
-export const getCompanyProfile = async (query: string) => {
+export const getCompanyProfile = async (symbol: string) => {
   try {
-    const data = await axios.get<CompanyProfile[]>(
-      `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.REACT_APP_API_KEY}`
+    const data = await axios.get<CompanyProfile>(
+      `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.REACT_APP_API_KEY}`
     );
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log("error message: ", error.message);
+      console.log("error message:", error.message);
       return error.message;
     } else {
-      console.log("unexpected error: ", error);
-      return "An expected error has occured.";
+      console.log("unexpected error:", error);
+      return "An unexpected error has occurred.";
     }
   }
 };

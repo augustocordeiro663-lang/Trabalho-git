@@ -16,14 +16,12 @@ const Card: React.FC<Props> = ({ id, searchResult, onPortfolioCreate }) => {
       key={id}
       id={id}
     >
-      <Link to={`/company/${searchResult["1. symbol"]}`} className="font-bold text-center text-veryblack md:text-left">
-        {searchResult["2. name"]} ({searchResult["1. symbol"]})
+      <Link to={`/company/${searchResult.symbol}`} className="font-bold text-center text-veryDarkViolet md:text-left">
+        {searchResult.description} ({searchResult.symbol})
       </Link>
-      <p className="text-veryblack">{searchResult["8. currency"]}</p>
-      <p className="text-veryblack font-bold">
-        {searchResult["4. region"]} - {searchResult["3. type"]}
-      </p>
-      <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult["1. symbol"]} />
+      <p className="text-veryDarkBlue">{searchResult.type}</p>
+      <p className="text-veryDarkBlue font-bold">{searchResult.displaySymbol}</p>
+      <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol} />
     </div>
   );
 };
