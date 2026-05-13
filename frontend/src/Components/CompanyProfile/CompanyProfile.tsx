@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { CompanyKeyMetrics } from '../../company';
 import { useOutletContext } from 'react-router';
 import { getKeyMetrics } from '../../api';
@@ -63,19 +63,16 @@ const CompanyProfile = (props: Props) => {
   const ticker = useOutletContext<string>();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics | undefined>(undefined);
 
-useEffect(() => {
-  const getCompanyKeyMetrics = async () => {
-    console.log("ticker:", ticker);
-    const value = await getKeyMetrics(ticker);
-    console.log("value:", value);
-    console.log("value.data:", value);
-    if (typeof value !== "string" && value) {
-      console.log("metric:", (value as any).data?.metric);
-      setCompanyData((value as any).data?.metric);
-    }
-  };
-  getCompanyKeyMetrics();
-}, []);
+  useEffect(() => {
+    const getCompanyKeyMetrics = async () => {
+      const value = await getKeyMetrics(ticker);
+      if (typeof value !== "string" && value !== undefined) {
+        setCompanyData((value as any).data?.metric);
+      }
+    };
+    getCompanyKeyMetrics();
+  }, []);
+
   return (
     <>
       {companyData ? (

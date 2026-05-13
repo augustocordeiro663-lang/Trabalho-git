@@ -64,3 +64,27 @@ export interface CompanyKeyMetrics {
   marketCapTTM: number;
   dividendYieldPercentageTTM: number;
 }
+
+export interface CompanyIncomeStatement {
+  date: string;
+  symbol: string;
+  reportedCurrency: string;
+  cik: string;
+  fillingDate: string;
+  acceptedDate: string;
+  calendarYear: string;
+  period: string;
+  revenue: number;
+  costOfRevenue: number;
+  grossProfit: number;
+  grossProfitRatio: number;
+  depreciationAndAmortization: number;
+  operatingIncome: number;
+  operatingIncomeRatio: number;
+  incomeBeforeTax: number;
+  incomeBeforeTaxRatio: number;
+  netIncome: number;
+  netIncomeRatio: number;
+  eps: number;
+  epsdiluted: number;
+}
