@@ -4,6 +4,8 @@ import SearchPage from "../Pages/SearchPage/SearchPage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import App from "../App";
 import DesignPage from "../Pages/DesignPage/DesignPage";
+import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
+import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 
 export const router = createBrowserRouter([
   {
@@ -12,13 +14,14 @@ export const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "search", element: <SearchPage /> },
-       { path: "design-guide", element: <DesignPage /> },
+      { path: "design-guide", element: <DesignPage /> },
       {
         path: "company/:ticker",
         element: <CompanyPage />,
         children: [
-          { path: "company-profile", element: <HomePage /> },
-          { path: "income-statement", element: <HomePage /> },
+          { index: true, element: <CompanyProfile /> },
+          { path: "company-profile", element: <CompanyProfile /> },
+          { path: "income-statement", element: <IncomeStatement /> },
         ],
       },
     ],
