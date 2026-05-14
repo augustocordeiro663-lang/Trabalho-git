@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CompanyBalanceSheet } from '../../company';
 import { testBalanceSheetData } from '../Table/testeData';
-import RatioList from '../RatioList/RatioList';
 import Table from '../Table/Table';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {}
 
@@ -40,9 +40,15 @@ const config = [
 ];
 
 const BalanceSheet = (props: Props) => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 500);
+  }, []);
+
   return (
     <div>
-      <Table configs={config} data={testBalanceSheetData} />
+      {loading ? <Spinner isLoading={loading} /> : <Table configs={config} data={testBalanceSheetData} />}
     </div>
   );
 };

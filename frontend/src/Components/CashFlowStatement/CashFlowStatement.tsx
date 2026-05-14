@@ -2,6 +2,7 @@ import React from 'react';
 import { CompanyCashFlow } from '../../company';
 import { testCashFlowData } from '../Table/testeData';
 import Table from '../Table/Table';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {};
 
@@ -44,6 +45,7 @@ const CashFlowStatement = (props: Props) => {
   return (
     <>
       <Table configs={config} data={testCashFlowData} />
+      <Spinner />
     </>
   );
 };
