@@ -6,6 +6,9 @@ export interface CompanySearch {
 }
 
 export interface CompanyProfile {
+  discription: ReactNode;
+  sector: string;
+  price: any;
   country: string;
   currency: string;
   exchange: string;

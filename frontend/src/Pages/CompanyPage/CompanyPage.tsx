@@ -28,10 +28,15 @@ const CompanyPage = (props: Props) => {
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar companyName={company.name} />
           <CompanyDashboard ticker= {ticker!}>
-            <Tile title="Company" subTitle={company.name} />
-            <Tile title="Ticker" subTitle={company.ticker} />
-            <Tile title="Country" subTitle={company.country} />
-            <Tile title="Exchange" subTitle={company.exchange} />
+        <Tile title="Company" subTitle={company.name} />
+<Tile title="Ticker" subTitle={company.ticker} />
+<Tile title="Country" subTitle={company.country} />
+<Tile title="Exchange" subTitle={company.exchange} />
+<Tile title="Industry" subTitle={company.finnhubIndustry} />
+<Tile title="Currency" subTitle={company.currency} />
+<p className="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
+  {company.weburl}
+</p>
           </CompanyDashboard>
         </div>
       ) : (

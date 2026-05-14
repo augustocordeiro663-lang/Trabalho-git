@@ -1622,3 +1622,24 @@ export const testBalanceSheetData = [
     netDebt: 96423000000,
   },
 ];
+export const testCashFlowData = [
+  {
+    date: "2022-09-24",
+    symbol: "AAPL",
+    reportedCurrency: "USD",
+    cik: "0000320193",
+    fillingDate: "2022-10-28",
+    acceptedDate: "2022-10-27 18:01:14",
+    calendarYear: "2022",
+    period: "FY",
+    netIncome: 99803000000,
+    depreciationAndAmortization: 11104000000,
+    operatingCashFlow: 122151000000,
+    capitalExpenditure: -10708000000,
+    freeCashFlow: 111443000000,
+    cashAtEndOfPeriod: 24977000000,
+    commonStockIssued: 0,
+    netCashUsedForInvestingActivites: -22354000000,
+    netCashUsedProvidedByFinancingActivities: -110749000000,
+  },
+];
