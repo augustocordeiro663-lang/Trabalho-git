@@ -6,9 +6,7 @@ export interface CompanySearch {
 }
 
 export interface CompanyProfile {
-  discription: ReactNode;
-  sector: string;
-  price: any;
+  symbol: string;
   country: string;
   currency: string;
   exchange: string;
@@ -22,6 +20,7 @@ export interface CompanyProfile {
   logo: string;
   finnhubIndustry: string;
 }
+
 export interface CompanyKeyMetrics {
   peRatioTTM: any;
   tenDayAverageTradingVolume: number;
@@ -91,6 +90,7 @@ export interface CompanyIncomeStatement {
   eps: number;
   epsdiluted: number;
 }
+
 export interface CompanyBalanceSheet {
   date: string;
   symbol: string;
@@ -139,4 +139,9 @@ export interface CompanyCashFlow {
   commonStockIssued: number;
   netCashUsedForInvestingActivites: number;
   netCashUsedProvidedByFinancingActivities: number;
+}
+
+export interface CompanyCompData {
+  symbol: string;
+  peersList: string[];
 }

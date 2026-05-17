@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CompanyBalanceSheet, CompanyCashFlow, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
+import CompanyCompData, { CompanyBalanceSheet, CompanyCashFlow, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
 interface SearchResponse {
   result: CompanySearch[];
 }
@@ -92,10 +92,10 @@ export const getBalanceSheet= async (query: string) => {
   }
 };
 
-export const getCashflowStatement = async (query: string) => {
+export const getCompData = async (query: string) => {
   try {
-    const data = await axios.get<CompanyCashFlow>(
-      `https://finnhub.io/api/v1/stock/metric?symbol=${query}&metric=all&token=${process.env.REACT_APP_API_KEY}`
+    const data = await axios.get<string[]>(
+      `https://finnhub.io/api/v1/stock/peers?symbol=${query}&token=${process.env.REACT_APP_API_KEY}`
     );
     return data;
   } catch (error) {
