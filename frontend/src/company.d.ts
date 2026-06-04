@@ -6,6 +6,11 @@ export interface CompanySearch {
 }
 
 export interface CompanyProfile {
+  description: ReactNode;
+  dcf: any;
+  sector: string;
+  price: any;
+  companyName: string;
   symbol: string;
   country: string;
   currency: string;
@@ -92,6 +97,10 @@ export interface CompanyIncomeStatement {
 }
 
 export interface CompanyBalanceSheet {
+  intangibleAssets: any;
+  otherLiabilities: any;
+  otherCurrentLiabilities(otherCurrentLiabilities: any): unknown;
+  retainedEarnings(retainedEarnings: any): unknown;
   date: string;
   symbol: string;
   reportedCurrency: string;
@@ -144,4 +153,15 @@ export interface CompanyCashFlow {
 export interface CompanyCompData {
   symbol: string;
   peersList: string[];
+}
+
+export interface CompanyTenk {
+  accessNumber: Key | null | undefined;
+  symbol: string;
+  fillingDate: string;
+  acceptedDate: string;
+  cik: string;
+  type: string;
+  link: string;
+  finalLink: string;
 }

@@ -3,39 +3,75 @@ import { CompanyBalanceSheet } from '../../company';
 import { testBalanceSheetData } from '../Table/testeData';
 import Table from '../Table/Table';
 import Spinner from '../Spinner/Spinner';
+import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormating';
 
 type Props = {}
 
 const config = [
-  {
-    label: "Total Assets",
-    render: (company: CompanyBalanceSheet) => company.totalAssets,
-    subTitle: "Total assets of the company",
+ {
+    label: <div className="font-bold">Total Assets</div>,
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.totalAssets),
   },
   {
-    label: "Total Liabilities",
-    render: (company: CompanyBalanceSheet) => company.totalLiabilities,
-    subTitle: "Total liabilities of the company",
+    label: "Current Assets",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.totalCurrentAssets),
   },
   {
-    label: "Total Equity",
-    render: (company: CompanyBalanceSheet) => company.totalEquity,
-    subTitle: "Total equity of the company",
+    label: "Total Cash",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.cashAndCashEquivalents),
+  },
+  {
+    label: "Property & equipment",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.propertyPlantEquipmentNet),
+  },
+  {
+    label: "Intangible Assets",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.intangibleAssets),
+  },
+  {
+    label: "Long Term Debt",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.longTermDebt),
   },
   {
     label: "Total Debt",
-    render: (company: CompanyBalanceSheet) => company.totalDebt,
-    subTitle: "Total debt of the company",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.otherCurrentLiabilities),
   },
   {
-    label: "Cash And Equivalents",
-    render: (company: CompanyBalanceSheet) => company.cashAndCashEquivalents,
-    subTitle: "Cash and cash equivalents",
+    label: <div className="font-bold">Total Liabilites</div>,
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.totalLiabilities),
   },
   {
-    label: "Inventory",
-    render: (company: CompanyBalanceSheet) => company.inventory,
-    subTitle: "Inventory value",
+    label: "Current Liabilities",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.totalCurrentLiabilities),
+  },
+  {
+    label: "Long-Term Debt",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.longTermDebt),
+  },
+  {
+    label: "Long-Term Income Taxes",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.otherLiabilities),
+  },
+  {
+    label: "Stakeholder's Equity",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.totalStockholdersEquity),
+  },
+  {
+    label: "Retained Earnings",
+    render: (company: CompanyBalanceSheet) =>
+      formatLargeMonetaryNumber(company.retainedEarnings),
   },
 ];
 

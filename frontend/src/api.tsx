@@ -1,5 +1,5 @@
 import axios from "axios";
-import CompanyCompData, { CompanyBalanceSheet, CompanyCashFlow, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
+import CompanyCompData, { CompanyBalanceSheet, CompanyCashFlow, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenk } from "./company";
 interface SearchResponse {
   result: CompanySearch[];
 }
@@ -80,6 +80,22 @@ export const getBalanceSheet= async (query: string) => {
     const data = await axios.get<CompanyBalanceSheet>(
       `https://finnhub.io/api/v1/stock/metric?symbol=${query}&metric=all&token=${process.env.REACT_APP_API_KEY}`
     );
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log("error message:", error.message);
+      return error.message;
+    } else {
+      console.log("unexpected error:", error);
+      return "An unexpected error has occurred.";
+    }
+  }
+};
+
+export const getTenk = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyTenk[]>(
+`https://finnhub.io/api/v1/stock/filings?symbol=${Symbol}&token=${process.env.REACT_APP_API_KEY}`    );
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
