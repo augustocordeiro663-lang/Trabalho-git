@@ -25,5 +25,10 @@ namespace api.Repository
             await _context.SaveChangesAsync();
             return comment;
         }
+
+        public Task<Comment?> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

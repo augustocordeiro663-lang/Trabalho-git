@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using api.Data;
 using api.Interfaces;
 using api.Repository;
@@ -5,7 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// 👇 só uma vez, já com o NewtonsoftJson
+builder.Services.AddControllers().AddNewtonsoftJson(options => 
+{
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();    
 
@@ -25,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-  app.UseHttpsRedirection();
-  app.MapControllers();
+app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();
