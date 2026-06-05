@@ -7,6 +7,9 @@ C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.sourcelink.json
+C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.dll
+C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\refint\api.dll
+C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.pdb
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\bin\Debug\net10.0\appsettings.Development.json
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\bin\Debug\net10.0\appsettings.json
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\bin\Debug\net10.0\api.staticwebassets.endpoints.json
@@ -155,8 +158,5 @@ C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\swae.build.ex.cache
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.csproj.Up2Date
-C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.dll
-C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\refint\api.dll
-C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.pdb
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\api.genruntimeconfig.cache
 C:\Users\User\Downloads\Trabalho-git-main\Trabalho-git-main\api\obj\Debug\net10.0\ref\api.dll
