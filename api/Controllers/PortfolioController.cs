@@ -18,13 +18,16 @@ namespace api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IStockRepository _stockRepo;
         private readonly IPortfolioRepository _portfolioRepo;
+         
+        private readonly IFMPService _fmpService; 
 
         public PortfolioController(UserManager<AppUser> userManager,
-        IStockRepository stockRepo, IPortfolioRepository portfolioRepo)
+        IStockRepository stockRepo, IPortfolioRepository portfolioRepo, IFMPService fmpService)
         {
             _userManager = userManager;
             _stockRepo = stockRepo;
             _portfolioRepo = portfolioRepo;
+            _fmpService = fmpService;
             
         }
         
@@ -72,7 +75,7 @@ namespace api.Controllers
             }
         }
 
-        
+
         [HttpDelete]
         [Authorize]
         public async Task<IActionResult> DeletePortfolio(string symbol)
