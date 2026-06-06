@@ -1,8 +1,10 @@
 using api.Dtos.Comment;
 using api.Extensions;
+using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,12 +33,13 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Authorize]
+        public async Task<IActionResult> GetAll([FromQuery] CommentQueryObject queryObject)
         {
             if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-            var comments = await _commentRepo.GetAllAsync();
+            var comments = await _commentRepo.GetAllAsync(queryObject);
             var commentDto = comments.Select(s => s.ToCommentDto());
             return Ok(commentDto);
         }
@@ -61,11 +64,11 @@ public async Task<IActionResult> Create([FromRoute] string symbol, [FromBody] Cr
     if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-    var stock = await _stockRepo.GetBySymbolAsync(symbol); // 👈 era stockId, correto é symbol
+    var stock = await _stockRepo.GetBySymbolAsync(symbol); 
 
     if (stock == null)
     {
-        stock = await _fpmService.FindStockBySymbolAsync(symbol); // 👈 faltava o ponto
+        stock = await _fpmService.FindStockBySymbolAsync(symbol); 
         if (stock == null)
         {
             return BadRequest("Stock does not exists");
