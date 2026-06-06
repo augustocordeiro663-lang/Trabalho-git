@@ -1,8 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using api.Dtos.Comment;
 
 namespace api.Dtos.Stock
 {
+        [Table("Stock")]
+
     public class StockDto  
     {
         public int Id { get; set; }
