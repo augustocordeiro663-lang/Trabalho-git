@@ -1,5 +1,6 @@
 using api.Data;
 using api.Dtos.Stock;
+using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +20,15 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
-         var stocks = await _stockRepo.GetAllAsync();
+         var stocks = await _stockRepo.GetAllAsync(query);
 
          var stockDto = stocks.Select(s => s.ToStockDto());
          return Ok(stockDto); 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var stock = await _stockRepo.GetByIdAsync(id);
@@ -65,7 +66,7 @@ namespace api.Controllers
             return Ok(stockModel.ToStockDto());
         }
      [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)  
         {
             var stockModel = await _stockRepo.DeleteAsync(id);
