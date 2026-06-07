@@ -8,8 +8,8 @@ import { formatLargeMonetaryNumber } from '../../Helpers/NumberFormating';
 type Props = {}
 
 const config = [
- {
-    label: <div className="font-bold">Total Assets</div>,
+  {
+    label: "Total Assets", 
     render: (company: CompanyBalanceSheet) =>
       formatLargeMonetaryNumber(company.totalAssets),
   },
@@ -44,7 +44,7 @@ const config = [
       formatLargeMonetaryNumber(company.otherCurrentLiabilities),
   },
   {
-    label: <div className="font-bold">Total Liabilites</div>,
+    label: "Total Liabilites", // 👈 corrigido
     render: (company: CompanyBalanceSheet) =>
       formatLargeMonetaryNumber(company.totalLiabilities),
   },

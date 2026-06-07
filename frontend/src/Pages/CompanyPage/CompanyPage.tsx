@@ -5,9 +5,9 @@ import { getCompanyProfile } from "../../api";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard";
 import Tile from "../../Components/Tile/Tile";
-import Spinner from "../../Components/Spinners/Spinner";
+import Spinner from "../../Components/Spinner/Spinner"; 
+import TenKFinder from "../../Components/TenkFinder/TenkFinder";  
 import CompFinder from "../../Components/CompFinder/CompFinder";
-import TenKFinder from "../../Components/TenKFinder/TenKFinder";
 
 interface Props {}
 
@@ -19,7 +19,9 @@ const CompanyPage = (props: Props) => {
   useEffect(() => {
     const getProfileInit = async () => {
       const result = await getCompanyProfile(ticker!);
-      setCompany(result?.data[0]);
+      if (result && typeof result !== "string") {
+  setCompany(result.data);
+}
     };
     getProfileInit();
   }, []);
