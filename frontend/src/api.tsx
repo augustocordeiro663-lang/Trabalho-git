@@ -1,8 +1,16 @@
 import axios from "axios";
 import { CompanyBalanceSheet, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenk } from "./company";
 
-// 👈 instância separada sem o header Authorization
-const finnhubAxios = axios.create();
+const finnhubAxios = axios.create({
+  headers: {
+    Authorization: undefined
+  }
+});
+
+finnhubAxios.interceptors.request.use((config) => {
+  delete config.headers['Authorization'];
+  return config;
+});
 
 interface SearchResponse {
   result: CompanySearch[];

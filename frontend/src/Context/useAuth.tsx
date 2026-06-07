@@ -58,26 +58,25 @@ const registerUser = async (
       }) .catch((e) => toast.warning("Server error occured"));
   };
   
-  const loginUser = async (
-    username: string,
-    password: string
-  ) => {
-    await loginAPI( username, password)
-      .then((res) => {
-        if (res) {
-          localStorage.setItem("token", res?.data.token);
-          const userObj = {
-            userName: res?.data.userName,
-            email: res?.data.email,
-          };
-          localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res?.data.token!);
-          setUser(userObj!);
-          toast.success("Login Success!");
-          navigate("/search");
-        }
-      }) .catch((e) => toast.warning("Server error occured"));
-  };
+const loginUser = async (username: string, password: string) => {
+  await loginAPI(username, password)
+    .then((res) => {
+      if (res) {
+        localStorage.setItem("token", res?.data.token);
+        const userObj = {
+          userName: res?.data.userName,
+          email: res?.data.email,
+        };
+        localStorage.setItem("user", JSON.stringify(userObj));
+        setToken(res?.data.token!);
+        setUser(userObj!);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + res?.data.token; // 👈 adicione isso
+        toast.success("Login Success!");
+        navigate("/search");
+      }
+    })
+    .catch((e) => toast.warning("Server error occured"));
+};
      const isLoggedIn = () => {
     return !!user;
      };
@@ -88,6 +87,7 @@ const registerUser = async (
     setToken("");
     navigate("/");
   };
+  
 
   return (
     <UserContext.Provider

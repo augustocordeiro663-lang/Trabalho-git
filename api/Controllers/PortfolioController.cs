@@ -45,35 +45,41 @@ namespace api.Controllers
     
    [HttpPost]
    [Authorize]
-        public async Task<IActionResult> AddPortfolio(string symbol)
-        {
-            var username = User.GetUsername();
-            var appUser = await _userManager.FindByNameAsync(username);
-            var stock = await _stockRepo.GetBySymbolAsync(symbol);
-  
-            if (stock == null) return BadRequest("Stock not found");
+public async Task<IActionResult> AddPortfolio(string symbol)
+{
+    var username = User.GetUsername();
+    var appUser = await _userManager.FindByNameAsync(username);
+    var stock = await _stockRepo.GetBySymbolAsync(symbol);
+    Console.WriteLine($"AppUser found: {appUser?.Id}"); 
+    Console.WriteLine($"Username from token: {username}"); 
 
-            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+    if (stock == null)
+    {
+        stock = await _fmpService.FindStockBySymbolAsync(symbol); 
+        if (stock == null)
+            return BadRequest("Stock not found");
 
-            if (userPortfolio.Any(e => e.Symbol.ToLower() == symbol.ToLower())) return BadRequest("Cannot add same stock to portfolio");
+        await _stockRepo.CreateAsync(stock); 
+    }
 
-            var portfolioModel = new Portfolio
-            {
-                StockId = stock.Id,
-                AppUserId = appUser.Id
-            };
+    var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
 
-            await _portfolioRepo.CreateAsync(portfolioModel);
+    if (userPortfolio.Any(e => e.Symbol.ToLower() == symbol.ToLower()))
+        return BadRequest("Cannot add same stock to portfolio");
 
-            if (portfolioModel == null)
-            {
-                return StatusCode(500, "Could not create");
-            }
-            else
-            {
-                return Created();
-            }
-        }
+    var portfolioModel = new Portfolio
+    {
+        StockId = stock.Id,
+        AppUserId = appUser.Id
+    };
+
+    await _portfolioRepo.CreateAsync(portfolioModel);
+
+    if (portfolioModel == null)
+        return StatusCode(500, "Could not create");
+
+    return Created();
+}
 
 
         [HttpDelete]
